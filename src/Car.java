@@ -13,8 +13,12 @@ public class Car {
     double fuelVolume;
     AirConditioner airConditioner;
     CoolingSystem coolingSystem;
+    String carBrand;
+    String type;
+    String carNumber;
+    String color;
 
-    public Car(double initialFuelVolume, Engine engine) {
+    public Car(double initialFuelVolume, Engine engine, String carBrand, String type, String carNumber, String color) {
         leftTurnSignal = new TurnSignal("левый");
         rightTurnSignal = new TurnSignal("правый");
         frontLeft = new Wheel();
@@ -28,6 +32,10 @@ public class Car {
         airConditioner = new AirConditioner();
         coolingSystem = new CoolingSystem();
         this.engine = engine;
+        this.carBrand = carBrand;
+        this.carNumber = carNumber;
+        this.color = color;
+        this.type = type;
 
 
     }
@@ -70,6 +78,10 @@ public String getFuelStatus() {
         coolingSystem.stopCooling();
     }
 
+    @Override
+    public String toString() {
+        return carBrand;
+    }
 
 }
 
