@@ -1,12 +1,17 @@
-import java.util.Scanner;
-public class Car {
+import AirConditioner.AirConditioner;
+import CoolingSystem.CoolingSystem;
+import Engine.Engine;
+import FuelIndicator.FuelIndicator;
+import Headlight.Headlight;
+import Trunk.Trunk;
+import TurnSignal.TurnSignal;
+import Wheel.Wheel;
+import java.util.List;
+
+abstract class Car {
     TurnSignal leftTurnSignal;
     TurnSignal rightTurnSignal;
     Engine engine;
-    Wheel frontLeft;
-    Wheel frontRight;
-    Wheel rearLeft;
-    Wheel rearRight;
     Trunk trunk;
     Headlight headlight;
     FuelIndicator fuelIndicator;
@@ -14,45 +19,34 @@ public class Car {
     AirConditioner airConditioner;
     CoolingSystem coolingSystem;
     String carBrand;
-    String type;
     String carNumber;
     String color;
+    List<Wheel> wheels;
 
-    public Car(double initialFuelVolume, Engine engine, String carBrand, String type, String carNumber, String color) {
+    public Car(double initialFuelVolume, Engine engine, String carBrand, String carNumber, String color, List<Wheel> wheels) {
         leftTurnSignal = new TurnSignal("левый");
         rightTurnSignal = new TurnSignal("правый");
-        frontLeft = new Wheel();
-        frontRight = new Wheel();
-        rearLeft = new Wheel();
-        rearRight = new Wheel();
-        trunk = new Trunk();
-        headlight = new Headlight();
-        fuelIndicator = new FuelIndicator();
         fuelVolume = initialFuelVolume;
-        airConditioner = new AirConditioner();
-        coolingSystem = new CoolingSystem();
         this.engine = engine;
         this.carBrand = carBrand;
         this.carNumber = carNumber;
         this.color = color;
-        this.type = type;
-
+        this.wheels = wheels;
 
     }
     public void move() {
-        frontLeft.rotate();
-        frontRight.rotate();
-        rearRight.rotate();
-        rearLeft.rotate();
-        System.out.println("Машина едет");
+        for (Wheel wheel : wheels) {
+            wheel.rotate();
+        }
+        System.out.println("едет");
     }
 
     public void fly () {
-        frontLeft.flying();
-        frontRight.flying();
-        rearLeft.flying();
-        rearRight.flying();
-        System.out.println("Машина летит");
+        for (Wheel wheel : wheels) {
+            wheel.flying();
+        }
+
+        System.out.println("летит");
     }
 
     public void setAirConditionerTemperature(double temperature){
@@ -80,7 +74,7 @@ public String getFuelStatus() {
 
     @Override
     public String toString() {
-        return carBrand;
+        return carBrand + carNumber;
     }
 
 }

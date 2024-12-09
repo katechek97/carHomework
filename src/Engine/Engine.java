@@ -1,4 +1,6 @@
-interface Engine {
+package Engine;
+
+public interface Engine {
     int getRotation();
     double getOptimalTemperature();
     double getTemperature();

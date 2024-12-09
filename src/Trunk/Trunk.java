@@ -1,4 +1,6 @@
-public class Trunk implements TrunkInterface{
+package Trunk;
+
+public class Trunk implements TrunkInterface {
     boolean isOpen = false;
 
     @Override

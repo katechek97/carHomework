@@ -1,11 +1,13 @@
-public class HydrogenEngine implements Engine {
+package Engine;
+
+public class NuclearEngine implements Engine {
     int rotation;
-    double optimalTemperature = 110;
+    double optimalTemperature = 300;
     double currentEngineTemperature;
 
-    public HydrogenEngine() {
+    public NuclearEngine() {
         this.currentEngineTemperature = optimalTemperature;
-        this.rotation = 6000;
+        this.rotation = 100000;
     }
     @Override
     public int getRotation() {

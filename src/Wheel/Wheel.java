@@ -1,4 +1,6 @@
-public class Wheel implements WheelInterface{
+package Wheel;
+
+public class Wheel implements WheelInterface {
     boolean rotating = false;
     boolean flying = false;
     @Override
