@@ -1,3 +1,5 @@
+package TurnSignal;
+
 public class TurnSignal implements TurnSignalInterface {
     boolean isOn = false;
     String side;

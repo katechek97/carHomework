@@ -1,4 +1,6 @@
-public class Headlight implements HeadlightsInterface{
+package Headlight;
+
+public class Headlight implements HeadlightsInterface {
     boolean isOn = false;
     @Override
     public void on() {

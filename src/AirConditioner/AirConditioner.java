@@ -1,4 +1,6 @@
-public class AirConditioner implements AirConditionerInterface{
+package AirConditioner;
+
+public class AirConditioner implements AirConditionerInterface {
     double currentTemperature;
     @Override
     public void setTemperature(double temperature) throws IllegalArgumentException {

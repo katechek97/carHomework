@@ -1,3 +1,5 @@
+package CoolingSystem;
+
 public class CoolingSystem implements CoolingSystemInterface {
     boolean isCooling = false;
 

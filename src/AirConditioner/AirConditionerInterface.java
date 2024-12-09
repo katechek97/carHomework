@@ -1,3 +1,5 @@
+package AirConditioner;
+
 interface AirConditionerInterface {
     public static final double MIN_TEMPERATURE = 16.0;
     public static final double MAX_TEMPERATURE = 29.0;

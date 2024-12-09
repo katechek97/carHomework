@@ -1,39 +1,45 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-import java.util.Scanner;
+import Engine.Engine;
+import Engine.HydrogenEngine;
+import Engine.DieselEngine;
+import Engine.NuclearEngine;
+import Engine.GasolineEngine;
+import Wheel.Wheel;
+import java.util.List;
 import java.util.ArrayList;
+import java.util.LinkedList;
 public class Main {
     public static void main(String[] args) {
 
         Engine engine = new HydrogenEngine();
         Engine engine1 = new DieselEngine();
         Engine engine2 = new NuclearEngine();
+        Engine engine3 = new GasolineEngine();
 
-//        engine.setTemperature(324);
-
-
-        Car car1 = new Car(30, engine1, "Mini cooper", "passenger car", "К431ВУ", "blue");
-        Car car2 = new Car(80, engine2, "Toyota", "passenger car", "М333ВО", "red");
-        Car car3 = new Car(100, engine1, "Nissan", "passenger car", "А777АА", "black");
-        Car car4 = new Car(30, engine1, "Mini cooper", "passenger car", "С672МО", "grey");
-        Car car5 = new Car(70, engine2, "Kia", "passenger car", "С546АС", "black");
-        Car car6 = new Car(120, engine2, "Range Rover", "passenger car", "Л990СМ", "white");
-        Car car7 = new Car(20, engine1, "Kia", "passenger car", "О500ОО", "blue");
-        Car car8 = new Car(80, engine2, "Nissan", "passenger car", "М768РО", "red");
-        Car car9 = new Car(90, engine1, "Range Rover", "passenger car", "Р623ТО", "grey");
-        Car car10 = new Car(76, engine1, "Toyota", "passenger car", "С120УД", "green");
-        Car car11 = new Car(40, engine, "Toyota", "passenger car", "В009МИ", "white");
-        Car car12 = new Car(90, engine1, "Mercedes", "public transport", "С333ЛУ", "green");
-        Car car13 = new Car(80, engine1, "Daewoo", "public transport", "Р645ЛО", "white");
-        Car car14 = new Car(80, engine1, "Daewoo", "public transport", "П456АК", "white");
-        Car car15 = new Car(90, engine1, "Mercedes", "public transport", "В333ИП", "green");
-        Car car16 = new Car(120, engine, "Scania", "truck", "А777АА", "red");
-        Car car17 = new Car(100, engine, "Scania", "truck", "В333ВВ", "blue");
-        Car car18 = new Car(120, engine, "Volvo", "truck", "П123АА", "white");
-        Car car19 = new Car(15, engine1, "Yamaha", "motorbike", "1234", "white");
-        Car car20 = new Car(15, engine1, "Yamaha", "motorbike", "4567", "black");
+        List<Wheel> wheels1 = List.of(new Wheel(), new Wheel(), new Wheel(), new Wheel());
+        List<Wheel> wheels2 = List.of(new Wheel(), new Wheel());
+        List<Wheel> wheels3 = List.of(new Wheel(), new Wheel(), new Wheel(), new Wheel(), new Wheel(), new Wheel());
 
 
+        PassengerCar car1 = new PassengerCar(30, engine3, "Toyota", "LA123M", "red", wheels1);
+        PassengerCar car2 = new PassengerCar(40, engine1, "Toyota", "NV674D", "blue", wheels1);
+        PassengerCar car3 = new PassengerCar(25, engine1, "Toyota", "XA124R", "white", wheels1);
+        PassengerCar car4 = new PassengerCar(35, engine3, "Nissan", "KJ777V", "black", wheels1);
+        PassengerCar car5 = new PassengerCar(50, engine3, "Nissan", "LO098P", "black", wheels1);
+        PassengerCar car6 = new PassengerCar(40, engine1, "Range Rover", "BH148C", "grey", wheels1);
+        PassengerCar car7 = new PassengerCar(45, engine1, "Kia", "NN444N", "blue", wheels1);
+        PassengerCar car8 = new PassengerCar(50, engine3, "Kia", "CF098K", "red", wheels1);
+        PassengerCar car9 = new PassengerCar(30, engine1, "Mini cooper", "AL973C", "blue", wheels1);
+        PassengerCar car10 = new PassengerCar(32, engine3, "Kia", "BB656F", "white", wheels1);
+        Truck car11 = new Truck(350, engine, "Scania", "FA122D", "white", wheels1);
+        Truck car12 = new Truck(300, engine1, "Volvo", "SC146D", "black", wheels1);
+        Truck car13 = new Truck(350, engine, "Scania", "KB666F", "white", wheels1);
+        PublicTransport car14 = new PublicTransport(150, engine1, "Daewoo", "FE111E", "yellow", wheels1);
+        PublicTransport car15 = new PublicTransport(150, engine1, "Daewoo", "MM999M", "yellow", wheels1);
+        PublicTransport car16 = new PublicTransport(200, engine3, "Mercedes", "SS078S", "white", wheels1);
+        Motorbike car17 = new Motorbike(20, engine3, "Yamaha", "BL124O", "red", wheels2);
+        Motorbike car18 = new Motorbike(20, engine3, "Yamaha", "CV888V", "black", wheels2);
 
         ArrayList<Car> parkingLot = new ArrayList<>();
         parkingLot.add(car1);
@@ -54,17 +60,16 @@ public class Main {
         parkingLot.add(car16);
         parkingLot.add(car17);
         parkingLot.add(car18);
-        parkingLot.add(car19);
-        parkingLot.add(car20);
 
-
+        //задание на удаление из списка (машины марки "Тойота" должны вывезти с парковки на ремонт
         parkingLot.removeIf(car -> car.carBrand.equals("Toyota"));
-        System.out.println(parkingLot);
+        System.out.println("оставшиеся на парковке автомобили: " + parkingLot);
 
 
+        //задание на выбор конкретной машины с парковки
         Car foundCar = null;
         for (Car car : parkingLot) {
-            if ("Mini cooper".equals(car.carBrand) && "К431ВУ".equals(car.carNumber) && "blue".equals(car.color)) {
+            if ("Mini cooper".equals(car.carBrand) && "AL973C".equals(car.carNumber) && "blue".equals(car.color)) {
                 foundCar = car;
                 break;
             }
@@ -75,32 +80,73 @@ public class Main {
             System.out.println("Автомобиль не найден");
         }
 
+        //задание на распределение машин по 4 зонам парковки в зависимости от типа транспортного средства
 
-        ArrayList<Car> passengerCars = new ArrayList<>();
-        ArrayList<Car> trucks = new ArrayList<>();
-        ArrayList<Car> publicTransport = new ArrayList<>();
-        ArrayList<Car> motorbikes = new ArrayList<>();
+        ArrayList<PassengerCar> passengerCars = new ArrayList<>();
+        ArrayList<Truck> trucks = new ArrayList<>();
+        ArrayList<PublicTransport> publicTransport = new ArrayList<>();
+        ArrayList<Motorbike> motorbikes = new ArrayList<>();
 
         for (Car car : parkingLot) {
-            switch (car.type) {
-                case "passenger car":
-                    passengerCars.add(car);
-                    break;
-                case "truck":
-                    trucks.add(car);
-                    break;
-                case "public transport":
-                    publicTransport.add(car);
-                    break;
-                case "motorbike":
-                    motorbikes.add(car);
-                    break;
+            if (car instanceof PassengerCar) {
+                passengerCars.add((PassengerCar) car);
+            } else if (car instanceof Truck) {
+                trucks.add((Truck) car);
+            } else if (car instanceof PublicTransport) {
+                publicTransport.add((PublicTransport) car);
+            } else if (car instanceof Motorbike) {
+                motorbikes.add((Motorbike) car);
+            } else {
+                System.out.println("неизвестный тип транспортного средства: " + car);
             }
         }
+
         System.out.println("Легковые автомобили: " + passengerCars);
         System.out.println("Грузовые автомобили: " + trucks);
         System.out.println("Автобусы: " + publicTransport);
         System.out.println("Мотоциклы: " + motorbikes);
+
+        //задание на добавление в список нового типа автомобилей
+
+        NuclearCar car19 = new NuclearCar(500, engine2, "CosmicCar", "KL888M", "white", wheels3);
+        NuclearCar car20 = new NuclearCar(500, engine2, "CosmicCar", "MC444L", "black", wheels3);
+        NuclearCar car21 = new NuclearCar(600, engine2, "CosmicCar", "OL099D", "red", wheels3);
+
+        ArrayList<NuclearCar> nuclearCars = new ArrayList<>();
+        nuclearCars.add(car19);
+        nuclearCars.add(car20);
+        nuclearCars.add(car21);
+        System.out.println(nuclearCars);
+        parkingLot.addAll(nuclearCars);
+        System.out.println(parkingLot);
+
+        //задание с LinkedList
+
+        LinkedList<Car> parkingLot2 = new LinkedList<>();
+        parkingLot2.add(car1);
+        parkingLot2.add(car2);
+        parkingLot2.add(car3);
+        parkingLot2.add(car4);
+        parkingLot2.add(car5);
+        parkingLot2.add(car6);
+        parkingLot2.add(car7);
+        parkingLot2.add(car8);
+        parkingLot2.add(car9);
+        parkingLot2.add(car10);
+        parkingLot2.add(car11);
+        parkingLot2.add(car12);
+        parkingLot2.add(car13);
+        parkingLot2.add(car14);
+        parkingLot2.add(car15);
+        parkingLot2.add(car16);
+        parkingLot2.add(car17);
+        parkingLot2.add(car18);
+
+        PassengerCar newCar = new PassengerCar(40, engine1, "BMW", "AA777A", "black", wheels1);
+        parkingLot2.add(15,newCar);
+        System.out.println(parkingLot2);
+
+
 
 
 
