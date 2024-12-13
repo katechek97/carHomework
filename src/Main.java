@@ -120,7 +120,7 @@ public class Main {
         parkingLot.addAll(nuclearCars);
         System.out.println(parkingLot);
 
-        //задание с LinkedList
+        //задание с LinkedList (попробовала добавить машину на место в середине парковки)
 
         LinkedList<Car> parkingLot2 = new LinkedList<>();
         parkingLot2.add(car1);
